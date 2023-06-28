@@ -2924,13 +2924,13 @@ components:
       additionalProperties: false
       description: Web server options.
   securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
-      type: http
-      scheme: bearer
-      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: X-API-KEY  # name of the header, query parameter or cookie
 # 2) Apply the security globally to all operations
 security:
-  - bearerAuth: []         # use the same name as above
+  - ApiKeyAuth: []         # use the same name as above
 servers:
   - url: http://localhost:5030/api/v0
     variables: {}
