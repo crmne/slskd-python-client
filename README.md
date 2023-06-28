@@ -67,10 +67,11 @@ configuration = slskd.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): bearerAuth
-configuration = slskd.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 
 # Enter a context with an instance of the API client
@@ -248,10 +249,12 @@ Class | Method | HTTP request | Description
 
 
 Authentication schemes defined for the API:
-<a id="bearerAuth"></a>
-### bearerAuth
+<a id="ApiKeyAuth"></a>
+### ApiKeyAuth
 
-- **Type**: Bearer authentication (JWT)
+- **Type**: API key
+- **API key parameter name**: X-API-KEY
+- **Location**: HTTP header
 
 
 ## Author

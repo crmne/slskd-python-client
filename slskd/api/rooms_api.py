@@ -161,7 +161,7 @@ class RoomsApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "List[RoomInfo]",
@@ -312,7 +312,7 @@ class RoomsApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Dict[str, Dict[str, Room]]",
@@ -484,7 +484,7 @@ class RoomsApi(object):
             _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "201": "Room",
@@ -644,7 +644,7 @@ class RoomsApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -801,7 +801,7 @@ class RoomsApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Room",
@@ -984,7 +984,7 @@ class RoomsApi(object):
             _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -1141,7 +1141,7 @@ class RoomsApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "List[RoomMessage]",
@@ -1324,7 +1324,7 @@ class RoomsApi(object):
             _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -1504,7 +1504,7 @@ class RoomsApi(object):
             _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -1661,7 +1661,7 @@ class RoomsApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "List[UserData]",

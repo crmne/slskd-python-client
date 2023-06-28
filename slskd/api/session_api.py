@@ -159,7 +159,7 @@ class SessionApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "bool",
@@ -308,7 +308,7 @@ class SessionApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -478,7 +478,7 @@ class SessionApi(object):
             _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "TokenResponse",

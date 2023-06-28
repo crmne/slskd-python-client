@@ -160,7 +160,7 @@ class SharesApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "List[Directory]",
@@ -307,7 +307,7 @@ class SharesApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -452,7 +452,7 @@ class SharesApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Dict[str, List[Share]]",
@@ -619,7 +619,7 @@ class SharesApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "List[Directory]",
@@ -787,7 +787,7 @@ class SharesApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Share",
@@ -935,7 +935,7 @@ class SharesApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 

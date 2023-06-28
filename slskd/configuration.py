@@ -37,30 +37,49 @@ JSON_SCHEMA_VALIDATION_KEYWORDS = {
 class Configuration(object):
     """This class contains various settings of the API client.
 
-    :param host: Base url.
-    :param api_key: Dict to store API key(s).
-      Each entry in the dict specifies an API key.
-      The dict key is the name of the security scheme in the OAS specification.
-      The dict value is the API key secret.
-    :param api_key_prefix: Dict to store API prefix (e.g. Bearer).
-      The dict key is the name of the security scheme in the OAS specification.
-      The dict value is an API key prefix when generating the auth data.
-    :param username: Username for HTTP basic authentication.
-    :param password: Password for HTTP basic authentication.
-    :param access_token: Access token.
-    :param server_index: Index to servers configuration.
-    :param server_variables: Mapping with string values to replace variables in
-      templated server configuration. The validation of enums is performed for
-      variables with defined enum values before.
-    :param server_operation_index: Mapping from operation ID to an index to server
-      configuration.
-    :param server_operation_variables: Mapping from operation ID to a mapping with
-      string values to replace variables in templated server configuration.
-      The validation of enums is performed for variables with defined enum values before.
-    :param ssl_ca_cert: str - the path to a file of concatenated CA certificates
-      in PEM format.
+        :param host: Base url.
+        :param api_key: Dict to store API key(s).
+          Each entry in the dict specifies an API key.
+          The dict key is the name of the security scheme in the OAS specification.
+          The dict value is the API key secret.
+        :param api_key_prefix: Dict to store API prefix (e.g. Bearer).
+          The dict key is the name of the security scheme in the OAS specification.
+          The dict value is an API key prefix when generating the auth data.
+        :param username: Username for HTTP basic authentication.
+        :param password: Password for HTTP basic authentication.
+        :param access_token: Access token.
+        :param server_index: Index to servers configuration.
+        :param server_variables: Mapping with string values to replace variables in
+          templated server configuration. The validation of enums is performed for
+          variables with defined enum values before.
+        :param server_operation_index: Mapping from operation ID to an index to server
+          configuration.
+        :param server_operation_variables: Mapping from operation ID to a mapping with
+          string values to replace variables in templated server configuration.
+          The validation of enums is performed for variables with defined enum values before.
+        :param ssl_ca_cert: str - the path to a file of concatenated CA certificates
+          in PEM format.
 
-    :Example:
+        :Example:
+
+        API Key Authentication Example.
+        Given the following security scheme in the OpenAPI specification:
+          components:
+            securitySchemes:
+              cookieAuth:         # name for the security scheme
+                type: apiKey
+                in: cookie
+                name: JSESSIONID  # cookie name
+
+        You can programmatically set the cookie:
+
+    conf = slskd.Configuration(
+        api_key={'cookieAuth': 'abc123'}
+        api_key_prefix={'cookieAuth': 'JSESSIONID'}
+    )
+
+        The following cookie will be added to the HTTP request:
+           Cookie: JSESSIONID abc123
     """
 
     _default = None
@@ -116,9 +135,6 @@ class Configuration(object):
         """
         self.access_token = access_token
         """Access token
-        """
-        self.access_token = None
-        """access token for OAuth/Bearer
         """
         self.logger = {}
         """Logging Settings
@@ -372,13 +388,14 @@ class Configuration(object):
         :return: The Auth Settings information dict.
         """
         auth = {}
-        if self.access_token is not None:
-            auth["bearerAuth"] = {
-                "type": "bearer",
+        if "ApiKeyAuth" in self.api_key:
+            auth["ApiKeyAuth"] = {
+                "type": "api_key",
                 "in": "header",
-                "format": "JWT",
-                "key": "Authorization",
-                "value": "Bearer " + self.access_token,
+                "key": "X-API-KEY",
+                "value": self.get_api_key_with_prefix(
+                    "ApiKeyAuth",
+                ),
             }
         return auth
 

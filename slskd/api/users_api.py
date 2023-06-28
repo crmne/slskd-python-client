@@ -193,7 +193,7 @@ class UsersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "List[Directory]",
@@ -371,7 +371,7 @@ class UsersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "float",
@@ -580,7 +580,7 @@ class UsersApi(object):
             _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Directory",
@@ -758,7 +758,7 @@ class UsersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "IPEndPoint",
@@ -936,7 +936,7 @@ class UsersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Info",
@@ -1114,7 +1114,7 @@ class UsersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Status",

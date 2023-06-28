@@ -152,7 +152,7 @@ class LogsApi(object):
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 

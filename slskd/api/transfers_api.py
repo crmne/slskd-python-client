@@ -161,7 +161,7 @@ class TransfersApi(object):
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -320,7 +320,7 @@ class TransfersApi(object):
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -472,7 +472,7 @@ class TransfersApi(object):
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -689,7 +689,7 @@ class TransfersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -861,7 +861,7 @@ class TransfersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Transfer",
@@ -1050,7 +1050,7 @@ class TransfersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {
             "200": "Transfer",
@@ -1259,7 +1259,7 @@ class TransfersApi(object):
             _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -1405,7 +1405,7 @@ class TransfersApi(object):
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -1564,7 +1564,7 @@ class TransfersApi(object):
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -1716,7 +1716,7 @@ class TransfersApi(object):
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -1933,7 +1933,7 @@ class TransfersApi(object):
         )  # noqa: E501
 
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
@@ -2114,7 +2114,7 @@ class TransfersApi(object):
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ["bearerAuth"]  # noqa: E501
+        _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
         _response_types_map = {}
 
