@@ -1,6 +1,6 @@
 # slskd.UsersApi
 
-All URIs are relative to *https://localhost:5031/api/v0*
+All URIs are relative to *http://localhost:5030/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,6 +19,7 @@ Retrieves the files shared by the specified username.
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 ```python
 import time
 import os
@@ -27,12 +28,21 @@ from slskd.models.directory import Directory
 from slskd.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://localhost:5031/api/v0
+# Defining the host is optional and defaults to http://localhost:5030/api/v0
 # See configuration.py for a list of all supported configuration parameters.
 configuration = slskd.Configuration(
-    host = "https://localhost:5031/api/v0"
+    host = "http://localhost:5030/api/v0"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = slskd.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with slskd.ApiClient(configuration) as api_client:
@@ -62,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -84,6 +94,7 @@ Retrieves the status of the current browse operation for the specified username,
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 ```python
 import time
 import os
@@ -91,12 +102,21 @@ import slskd
 from slskd.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://localhost:5031/api/v0
+# Defining the host is optional and defaults to http://localhost:5030/api/v0
 # See configuration.py for a list of all supported configuration parameters.
 configuration = slskd.Configuration(
-    host = "https://localhost:5031/api/v0"
+    host = "http://localhost:5030/api/v0"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = slskd.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with slskd.ApiClient(configuration) as api_client:
@@ -126,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -148,6 +168,7 @@ Retrieves the files from the specified directory from the specified username.
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 ```python
 import time
 import os
@@ -157,12 +178,21 @@ from slskd.models.directory_contents_request import DirectoryContentsRequest
 from slskd.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://localhost:5031/api/v0
+# Defining the host is optional and defaults to http://localhost:5030/api/v0
 # See configuration.py for a list of all supported configuration parameters.
 configuration = slskd.Configuration(
-    host = "https://localhost:5031/api/v0"
+    host = "http://localhost:5030/api/v0"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = slskd.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with slskd.ApiClient(configuration) as api_client:
@@ -194,7 +224,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -216,6 +246,7 @@ Retrieves the address of the specified username.
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 ```python
 import time
 import os
@@ -224,12 +255,21 @@ from slskd.models.ip_end_point import IPEndPoint
 from slskd.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://localhost:5031/api/v0
+# Defining the host is optional and defaults to http://localhost:5030/api/v0
 # See configuration.py for a list of all supported configuration parameters.
 configuration = slskd.Configuration(
-    host = "https://localhost:5031/api/v0"
+    host = "http://localhost:5030/api/v0"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = slskd.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with slskd.ApiClient(configuration) as api_client:
@@ -259,7 +299,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -281,6 +321,7 @@ Retrieves information about the specified username.
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 ```python
 import time
 import os
@@ -289,12 +330,21 @@ from slskd.models.info import Info
 from slskd.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://localhost:5031/api/v0
+# Defining the host is optional and defaults to http://localhost:5030/api/v0
 # See configuration.py for a list of all supported configuration parameters.
 configuration = slskd.Configuration(
-    host = "https://localhost:5031/api/v0"
+    host = "http://localhost:5030/api/v0"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = slskd.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with slskd.ApiClient(configuration) as api_client:
@@ -324,7 +374,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -346,6 +396,7 @@ Retrieves status for the specified username.
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 ```python
 import time
 import os
@@ -354,12 +405,21 @@ from slskd.models.status import Status
 from slskd.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://localhost:5031/api/v0
+# Defining the host is optional and defaults to http://localhost:5030/api/v0
 # See configuration.py for a list of all supported configuration parameters.
 configuration = slskd.Configuration(
-    host = "https://localhost:5031/api/v0"
+    host = "http://localhost:5030/api/v0"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = slskd.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with slskd.ApiClient(configuration) as api_client:
@@ -389,7 +449,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

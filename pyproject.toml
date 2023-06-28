@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "slskd"
 version = "1.0.0"
-description = "A slskd python client"
+description = "slskd"
 authors = ["Carmine Paolino <carmine@paolino.me>"]
 license = "MIT"
 readme = "README.md"
@@ -21,7 +21,6 @@ aenum = ">=3.1.11"
 pytest = ">=7.2.1"
 tox = ">=3.9.0"
 flake8 = ">=4.0.0"
-pre-commit = "*"
 
 [build-system]
 requires = ["setuptools"]

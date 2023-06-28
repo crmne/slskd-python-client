@@ -1,7 +1,14 @@
 openapi: 3.0.1
 info:
   title: slskd
-  version: v0
+  version: 0.17.8.0
+  description: A python client for slskd
+  contact:
+    email: carmine@paolino.me
+    name: Carmine Paolino
+    url: https://paolino.me
+  license:
+    name: MIT
 paths:
   /application:
     get:
@@ -2916,7 +2923,15 @@ components:
           $ref: '#/components/schemas/WebAuthenticationOptions'
       additionalProperties: false
       description: Web server options.
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+# 2) Apply the security globally to all operations
+security:
+  - bearerAuth: []         # use the same name as above
 servers:
-  - url: https://localhost:5031/api/v0
+  - url: http://localhost:5030/api/v0
     variables: {}
     description: Default Server
