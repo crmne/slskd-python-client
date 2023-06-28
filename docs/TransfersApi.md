@@ -87,7 +87,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transfers_downloads_get**
-> transfers_downloads_get(include_removed=include_removed)
+> object transfers_downloads_get(include_removed=include_removed)
 
 Gets all downloads.
 
@@ -126,7 +126,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets all downloads.
-        await api_instance.transfers_downloads_get(include_removed=include_removed)
+        api_response = await api_instance.transfers_downloads_get(include_removed=include_removed)
+        print("The response of TransfersApi->transfers_downloads_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling TransfersApi->transfers_downloads_get: %s\n" % e)
 ```
@@ -140,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -149,7 +151,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -159,7 +161,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transfers_downloads_username_get**
-> transfers_downloads_username_get(username)
+> object transfers_downloads_username_get(username)
 
 Gets all downloads for the specified username.
 
@@ -198,7 +200,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets all downloads for the specified username.
-        await api_instance.transfers_downloads_username_get(username)
+        api_response = await api_instance.transfers_downloads_username_get(username)
+        print("The response of TransfersApi->transfers_downloads_username_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling TransfersApi->transfers_downloads_username_get: %s\n" % e)
 ```
@@ -212,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -221,7 +225,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -608,7 +612,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transfers_uploads_get**
-> transfers_uploads_get(include_removed=include_removed)
+> object transfers_uploads_get(include_removed=include_removed)
 
 Gets all uploads.
 
@@ -647,7 +651,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets all uploads.
-        await api_instance.transfers_uploads_get(include_removed=include_removed)
+        api_response = await api_instance.transfers_uploads_get(include_removed=include_removed)
+        print("The response of TransfersApi->transfers_uploads_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling TransfersApi->transfers_uploads_get: %s\n" % e)
 ```
@@ -661,7 +667,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -670,7 +676,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -680,7 +686,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transfers_uploads_username_get**
-> transfers_uploads_username_get(username)
+> object transfers_uploads_username_get(username)
 
 Gets all uploads for the specified username.
 
@@ -719,7 +725,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets all uploads for the specified username.
-        await api_instance.transfers_uploads_username_get(username)
+        api_response = await api_instance.transfers_uploads_username_get(username)
+        print("The response of TransfersApi->transfers_uploads_username_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling TransfersApi->transfers_uploads_username_get: %s\n" % e)
 ```
@@ -733,7 +741,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -742,7 +750,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -829,7 +837,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transfers_uploads_username_id_get**
-> transfers_uploads_username_id_get(username, id)
+> object transfers_uploads_username_id_get(username, id)
 
 Gets the upload for the specified username matching the specified filename.
 
@@ -869,7 +877,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets the upload for the specified username matching the specified filename.
-        await api_instance.transfers_uploads_username_id_get(username, id)
+        api_response = await api_instance.transfers_uploads_username_id_get(username, id)
+        print("The response of TransfersApi->transfers_uploads_username_id_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling TransfersApi->transfers_uploads_username_id_get: %s\n" % e)
 ```
@@ -884,7 +894,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -893,7 +903,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

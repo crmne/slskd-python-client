@@ -155,7 +155,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **server_put**
-> server_put()
+> object server_put()
 
 Connects the client.
 
@@ -193,7 +193,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Connects the client.
-        await api_instance.server_put()
+        api_response = await api_instance.server_put()
+        print("The response of ServerApi->server_put:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ServerApi->server_put: %s\n" % e)
 ```
@@ -204,7 +206,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 

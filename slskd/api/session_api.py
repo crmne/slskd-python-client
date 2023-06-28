@@ -185,19 +185,19 @@ class SessionApi(object):
         )
 
     @overload
-    async def session_get(self, **kwargs) -> None:  # noqa: E501
+    async def session_get(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def session_get(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def session_get(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Checks whether the provided authentication is valid.  # noqa: E501
 
         This is a no-op provided so that the application can test for an expired token on load.  # noqa: E501
@@ -216,7 +216,7 @@ class SessionApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -260,7 +260,7 @@ class SessionApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -310,7 +310,11 @@ class SessionApi(object):
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+            "401": "ProblemDetails",
+            "403": None,
+        }
 
         return self.api_client.call_api(
             "/session",

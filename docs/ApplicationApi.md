@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **application_delete**
-> application_delete()
+> object application_delete()
 
 Stops the application.
 
@@ -52,7 +52,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Stops the application.
-        await api_instance.application_delete()
+        api_response = await api_instance.application_delete()
+        print("The response of ApplicationApi->application_delete:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ApplicationApi->application_delete: %s\n" % e)
 ```
@@ -63,7 +65,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -72,7 +74,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -82,7 +84,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **application_dump_get**
-> application_dump_get()
+> object application_dump_get()
 
 
 
@@ -119,7 +121,9 @@ async with slskd.ApiClient(configuration) as api_client:
     api_instance = slskd.ApplicationApi(api_client)
 
     try:
-        await api_instance.application_dump_get()
+        api_response = await api_instance.application_dump_get()
+        print("The response of ApplicationApi->application_dump_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ApplicationApi->application_dump_get: %s\n" % e)
 ```
@@ -130,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -139,7 +143,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -149,7 +153,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **application_gc_post**
-> application_gc_post()
+> object application_gc_post()
 
 Forces garbage collection.
 
@@ -187,7 +191,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Forces garbage collection.
-        await api_instance.application_gc_post()
+        api_response = await api_instance.application_gc_post()
+        print("The response of ApplicationApi->application_gc_post:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ApplicationApi->application_gc_post: %s\n" % e)
 ```
@@ -198,7 +204,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -207,7 +213,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -217,7 +223,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **application_get**
-> application_get()
+> object application_get()
 
 Gets the current state of the application.
 
@@ -255,7 +261,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets the current state of the application.
-        await api_instance.application_get()
+        api_response = await api_instance.application_get()
+        print("The response of ApplicationApi->application_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ApplicationApi->application_get: %s\n" % e)
 ```
@@ -266,7 +274,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -275,7 +283,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -285,7 +293,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **application_put**
-> application_put()
+> object application_put()
 
 Restarts the application.
 
@@ -323,7 +331,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Restarts the application.
-        await api_instance.application_put()
+        api_response = await api_instance.application_put()
+        print("The response of ApplicationApi->application_put:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ApplicationApi->application_put: %s\n" % e)
 ```
@@ -334,7 +344,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -343,7 +353,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -353,7 +363,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **application_version_get**
-> application_version_get()
+> object application_version_get()
 
 Gets the current application version.
 
@@ -391,7 +401,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets the current application version.
-        await api_instance.application_version_get()
+        api_response = await api_instance.application_version_get()
+        print("The response of ApplicationApi->application_version_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ApplicationApi->application_version_get: %s\n" % e)
 ```
@@ -402,7 +414,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -411,7 +423,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -421,7 +433,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **application_version_latest_get**
-> application_version_latest_get(force_check=force_check)
+> object application_version_latest_get(force_check=force_check)
 
 Checks for updates.
 
@@ -460,7 +472,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Checks for updates.
-        await api_instance.application_version_latest_get(force_check=force_check)
+        api_response = await api_instance.application_version_latest_get(force_check=force_check)
+        print("The response of ApplicationApi->application_version_latest_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ApplicationApi->application_version_latest_get: %s\n" % e)
 ```
@@ -474,7 +488,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -483,7 +497,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

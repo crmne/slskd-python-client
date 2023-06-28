@@ -36,19 +36,19 @@ class PublicChatApi(object):
         self.api_client = api_client
 
     @overload
-    async def publicchat_delete(self, **kwargs) -> None:  # noqa: E501
+    async def publicchat_delete(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def publicchat_delete(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def publicchat_delete(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Stops public chat.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -66,7 +66,7 @@ class PublicChatApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -109,7 +109,7 @@ class PublicChatApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -151,10 +151,17 @@ class PublicChatApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/publicchat",
@@ -176,19 +183,19 @@ class PublicChatApi(object):
         )
 
     @overload
-    async def publicchat_post(self, **kwargs) -> None:  # noqa: E501
+    async def publicchat_post(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def publicchat_post(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def publicchat_post(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Starts public chat.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -206,7 +213,7 @@ class PublicChatApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -249,7 +256,7 @@ class PublicChatApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -291,10 +298,17 @@ class PublicChatApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/publicchat",

@@ -36,19 +36,19 @@ class ApplicationApi(object):
         self.api_client = api_client
 
     @overload
-    async def application_delete(self, **kwargs) -> None:  # noqa: E501
+    async def application_delete(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def application_delete(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def application_delete(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Stops the application.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -66,7 +66,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -109,7 +109,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -151,10 +151,17 @@ class ApplicationApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/application",
@@ -176,19 +183,19 @@ class ApplicationApi(object):
         )
 
     @overload
-    async def application_dump_get(self, **kwargs) -> None:  # noqa: E501
+    async def application_dump_get(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def application_dump_get(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def application_dump_get(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """application_dump_get  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -206,7 +213,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -251,7 +258,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -293,10 +300,17 @@ class ApplicationApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/application/dump",
@@ -318,19 +332,19 @@ class ApplicationApi(object):
         )
 
     @overload
-    async def application_gc_post(self, **kwargs) -> None:  # noqa: E501
+    async def application_gc_post(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def application_gc_post(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def application_gc_post(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Forces garbage collection.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -348,7 +362,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -391,7 +405,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -433,10 +447,17 @@ class ApplicationApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/application/gc",
@@ -458,19 +479,19 @@ class ApplicationApi(object):
         )
 
     @overload
-    async def application_get(self, **kwargs) -> None:  # noqa: E501
+    async def application_get(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def application_get(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def application_get(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets the current state of the application.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -488,7 +509,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -531,7 +552,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -573,10 +594,17 @@ class ApplicationApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/application",
@@ -598,19 +626,19 @@ class ApplicationApi(object):
         )
 
     @overload
-    async def application_put(self, **kwargs) -> None:  # noqa: E501
+    async def application_put(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def application_put(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def application_put(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Restarts the application.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -628,7 +656,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -671,7 +699,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -713,10 +741,17 @@ class ApplicationApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/application",
@@ -738,19 +773,19 @@ class ApplicationApi(object):
         )
 
     @overload
-    async def application_version_get(self, **kwargs) -> None:  # noqa: E501
+    async def application_version_get(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def application_version_get(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def application_version_get(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets the current application version.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -768,7 +803,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -813,7 +848,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -855,10 +890,17 @@ class ApplicationApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/application/version",
@@ -882,7 +924,7 @@ class ApplicationApi(object):
     @overload
     async def application_version_latest_get(
         self, force_check: Optional[StrictBool] = None, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -891,7 +933,7 @@ class ApplicationApi(object):
         force_check: Optional[StrictBool] = None,
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -900,7 +942,7 @@ class ApplicationApi(object):
         force_check: Optional[StrictBool] = None,
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Checks for updates.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -920,7 +962,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -969,7 +1011,7 @@ class ApplicationApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1014,10 +1056,17 @@ class ApplicationApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/application/version/latest",

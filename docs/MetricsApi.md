@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **metrics_get**
-> metrics_get()
+> object metrics_get()
 
 Gets application metrics.
 
@@ -46,7 +46,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets application metrics.
-        await api_instance.metrics_get()
+        api_response = await api_instance.metrics_get()
+        print("The response of MetricsApi->metrics_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling MetricsApi->metrics_get: %s\n" % e)
 ```
@@ -57,7 +59,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -66,7 +68,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

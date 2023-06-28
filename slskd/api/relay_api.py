@@ -37,19 +37,19 @@ class RelayApi(object):
         self.api_client = api_client
 
     @overload
-    async def relay_agent_delete(self, **kwargs) -> None:  # noqa: E501
+    async def relay_agent_delete(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def relay_agent_delete(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def relay_agent_delete(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Disconnects from the connected controller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -67,7 +67,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -110,7 +110,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -152,10 +152,17 @@ class RelayApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/relay/agent",
@@ -177,19 +184,19 @@ class RelayApi(object):
         )
 
     @overload
-    async def relay_agent_put(self, **kwargs) -> None:  # noqa: E501
+    async def relay_agent_put(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def relay_agent_put(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def relay_agent_put(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Connects to the configured controller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -207,7 +214,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -250,7 +257,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -292,10 +299,17 @@ class RelayApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/relay/agent",
@@ -323,7 +337,7 @@ class RelayApi(object):
             StrictStr, Field(..., description="The unique identifier for the request.")
         ],
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -334,7 +348,7 @@ class RelayApi(object):
         ],
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -345,7 +359,7 @@ class RelayApi(object):
         ],
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Downloads a file from the connected controller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -365,7 +379,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -418,7 +432,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -462,10 +476,17 @@ class RelayApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/relay/controller/downloads/{token}",
@@ -493,7 +514,7 @@ class RelayApi(object):
             StrictStr, Field(..., description="The unique identifier for the request.")
         ],
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -504,7 +525,7 @@ class RelayApi(object):
         ],
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -515,7 +536,7 @@ class RelayApi(object):
         ],
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Uploads a file to the connected controller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -535,7 +556,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -588,7 +609,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -632,10 +653,17 @@ class RelayApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/relay/controller/files/{token}",
@@ -663,7 +691,7 @@ class RelayApi(object):
             StrictStr, Field(..., description="The unique identifier for the request.")
         ],
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -674,7 +702,7 @@ class RelayApi(object):
         ],
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -685,7 +713,7 @@ class RelayApi(object):
         ],
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Uploads share information to the connected controller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -705,7 +733,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -758,7 +786,7 @@ class RelayApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -802,10 +830,17 @@ class RelayApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/relay/controller/shares/{token}",

@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **conversations_username_id_put**
-> conversations_username_id_put(username, id)
+> object conversations_username_id_put(username, id)
 
 Acknowledges the given message id for the given username.
 
@@ -282,7 +282,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Acknowledges the given message id for the given username.
-        await api_instance.conversations_username_id_put(username, id)
+        api_response = await api_instance.conversations_username_id_put(username, id)
+        print("The response of ConversationsApi->conversations_username_id_put:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ConversationsApi->conversations_username_id_put: %s\n" % e)
 ```
@@ -297,7 +299,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -469,7 +471,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **conversations_username_put**
-> conversations_username_put(username)
+> object conversations_username_put(username)
 
 Acknowledges all messages from the given username.
 
@@ -508,7 +510,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Acknowledges all messages from the given username.
-        await api_instance.conversations_username_put(username)
+        api_response = await api_instance.conversations_username_put(username)
+        print("The response of ConversationsApi->conversations_username_put:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ConversationsApi->conversations_username_put: %s\n" % e)
 ```
@@ -522,7 +526,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 

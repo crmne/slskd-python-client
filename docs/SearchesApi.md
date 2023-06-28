@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **searches_get**
-> searches_get()
+> object searches_get()
 
 Gets the list of active and completed searches.
 
@@ -51,7 +51,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets the list of active and completed searches.
-        await api_instance.searches_get()
+        api_response = await api_instance.searches_get()
+        print("The response of SearchesApi->searches_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling SearchesApi->searches_get: %s\n" % e)
 ```
@@ -62,7 +64,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -71,7 +73,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -154,7 +156,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searches_id_get**
-> searches_id_get(id, include_responses=include_responses)
+> object searches_id_get(id, include_responses=include_responses)
 
 Gets the state of the search corresponding to the specified id.
 
@@ -194,7 +196,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets the state of the search corresponding to the specified id.
-        await api_instance.searches_id_get(id, include_responses=include_responses)
+        api_response = await api_instance.searches_id_get(id, include_responses=include_responses)
+        print("The response of SearchesApi->searches_id_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling SearchesApi->searches_id_get: %s\n" % e)
 ```
@@ -209,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -218,7 +222,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -229,7 +233,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searches_id_put**
-> searches_id_put(id)
+> object searches_id_put(id)
 
 Stops the search corresponding to the specified id.
 
@@ -268,7 +272,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Stops the search corresponding to the specified id.
-        await api_instance.searches_id_put(id)
+        api_response = await api_instance.searches_id_put(id)
+        print("The response of SearchesApi->searches_id_put:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling SearchesApi->searches_id_put: %s\n" % e)
 ```
@@ -282,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -291,7 +297,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -302,7 +308,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searches_id_responses_get**
-> searches_id_responses_get(id)
+> object searches_id_responses_get(id)
 
 Gets the state of the search corresponding to the specified id.
 
@@ -341,7 +347,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets the state of the search corresponding to the specified id.
-        await api_instance.searches_id_responses_get(id)
+        api_response = await api_instance.searches_id_responses_get(id)
+        print("The response of SearchesApi->searches_id_responses_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling SearchesApi->searches_id_responses_get: %s\n" % e)
 ```
@@ -355,7 +363,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -364,7 +372,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -375,7 +383,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searches_post**
-> searches_post(search_request=search_request)
+> object searches_post(search_request=search_request)
 
 Performs a search for the specified request.
 
@@ -415,7 +423,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Performs a search for the specified request.
-        await api_instance.searches_post(search_request=search_request)
+        api_response = await api_instance.searches_post(search_request=search_request)
+        print("The response of SearchesApi->searches_post:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling SearchesApi->searches_post: %s\n" % e)
 ```
@@ -429,7 +439,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -438,7 +448,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

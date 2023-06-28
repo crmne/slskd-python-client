@@ -187,7 +187,7 @@ class TransfersApi(object):
     @overload
     async def transfers_downloads_get(
         self, include_removed: Optional[StrictBool] = None, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -196,7 +196,7 @@ class TransfersApi(object):
         include_removed: Optional[StrictBool] = None,
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -205,7 +205,7 @@ class TransfersApi(object):
         include_removed: Optional[StrictBool] = None,
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets all downloads.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -225,7 +225,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -274,7 +274,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -319,10 +319,17 @@ class TransfersApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/transfers/downloads",
@@ -346,19 +353,19 @@ class TransfersApi(object):
     @overload
     async def transfers_downloads_username_get(
         self, username: StrictStr, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
     def transfers_downloads_username_get(
         self, username: StrictStr, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def transfers_downloads_username_get(
         self, username: StrictStr, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets all downloads for the specified username.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -378,7 +385,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -427,7 +434,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -471,10 +478,17 @@ class TransfersApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/transfers/downloads/{username}",
@@ -1431,7 +1445,7 @@ class TransfersApi(object):
     @overload
     async def transfers_uploads_get(
         self, include_removed: Optional[StrictBool] = None, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -1440,7 +1454,7 @@ class TransfersApi(object):
         include_removed: Optional[StrictBool] = None,
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -1449,7 +1463,7 @@ class TransfersApi(object):
         include_removed: Optional[StrictBool] = None,
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets all uploads.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1469,7 +1483,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -1518,7 +1532,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1563,10 +1577,17 @@ class TransfersApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/transfers/uploads",
@@ -1590,19 +1611,19 @@ class TransfersApi(object):
     @overload
     async def transfers_uploads_username_get(
         self, username: StrictStr, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
     def transfers_uploads_username_get(
         self, username: StrictStr, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def transfers_uploads_username_get(
         self, username: StrictStr, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets all uploads for the specified username.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1622,7 +1643,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -1671,7 +1692,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1715,10 +1736,17 @@ class TransfersApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/transfers/uploads/{username}",
@@ -1964,7 +1992,7 @@ class TransfersApi(object):
         ],
         id: Annotated[StrictStr, Field(..., description="The id of the upload.")],
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -1976,7 +2004,7 @@ class TransfersApi(object):
         id: Annotated[StrictStr, Field(..., description="The id of the upload.")],
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -1988,7 +2016,7 @@ class TransfersApi(object):
         id: Annotated[StrictStr, Field(..., description="The id of the upload.")],
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets the upload for the specified username matching the specified filename.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2010,7 +2038,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -2066,7 +2094,7 @@ class TransfersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -2113,10 +2141,17 @@ class TransfersApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/transfers/uploads/{username}/{id}",

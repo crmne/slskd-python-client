@@ -81,7 +81,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Stops the application.
-        await api_instance.application_delete()
+        api_response = await api_instance.application_delete()
+        print("The response of ApplicationApi->application_delete:\n")
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling ApplicationApi->application_delete: %s\n" % e)
 

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **publicchat_delete**
-> publicchat_delete()
+> object publicchat_delete()
 
 Stops public chat.
 
@@ -47,7 +47,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Stops public chat.
-        await api_instance.publicchat_delete()
+        api_response = await api_instance.publicchat_delete()
+        print("The response of PublicChatApi->publicchat_delete:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling PublicChatApi->publicchat_delete: %s\n" % e)
 ```
@@ -58,7 +60,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -67,7 +69,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -77,7 +79,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publicchat_post**
-> publicchat_post()
+> object publicchat_post()
 
 Starts public chat.
 
@@ -115,7 +117,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Starts public chat.
-        await api_instance.publicchat_post()
+        api_response = await api_instance.publicchat_post()
+        print("The response of PublicChatApi->publicchat_post:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling PublicChatApi->publicchat_post: %s\n" % e)
 ```
@@ -126,7 +130,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -135,7 +139,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

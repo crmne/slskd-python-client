@@ -80,7 +80,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **session_get**
-> session_get()
+> object session_get()
 
 Checks whether the provided authentication is valid.
 
@@ -120,7 +120,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Checks whether the provided authentication is valid.
-        await api_instance.session_get()
+        api_response = await api_instance.session_get()
+        print("The response of SessionApi->session_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling SessionApi->session_get: %s\n" % e)
 ```
@@ -131,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 

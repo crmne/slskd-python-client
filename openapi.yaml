@@ -18,6 +18,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
     delete:
       tags:
         - Application
@@ -25,6 +29,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
     put:
       tags:
         - Application
@@ -32,6 +40,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /application/version:
     get:
       tags:
@@ -40,6 +52,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /application/version/latest:
     get:
       tags:
@@ -54,6 +70,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /application/gc:
     post:
       tags:
@@ -62,6 +82,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /application/dump:
     get:
       tags:
@@ -69,6 +93,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /conversations/{username}/{id}:
     put:
       tags:
@@ -91,6 +119,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
         '404':
           description: >-
             A conversation with the specified username, or a message matching
@@ -114,6 +146,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
         '404':
           description: A conversation with the specified username could not be found.
           content:
@@ -258,6 +294,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /metrics:
     get:
       tags:
@@ -266,6 +306,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /options:
     get:
       tags:
@@ -309,6 +353,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /options/yaml:
     get:
       tags:
@@ -316,6 +364,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
     post:
       tags:
         - Options
@@ -327,6 +379,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /options/yaml/validate:
     post:
       tags:
@@ -339,6 +395,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /publicchat:
     post:
       tags:
@@ -347,6 +407,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
     delete:
       tags:
         - PublicChat
@@ -354,6 +418,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /relay/agent:
     put:
       tags:
@@ -362,6 +430,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
     delete:
       tags:
         - Relay
@@ -369,6 +441,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /relay/controller/downloads/{token}:
     get:
       tags:
@@ -384,6 +460,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /relay/controller/files/{token}:
     post:
       tags:
@@ -399,6 +479,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /relay/controller/shares/{token}:
     post:
       tags:
@@ -414,6 +498,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /rooms/joined:
     get:
       tags:
@@ -656,6 +744,10 @@ paths:
       responses:
         '200':
           description: The search completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
         '400':
           description: The specified request was malformed.
         '500':
@@ -667,6 +759,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
   /searches/{id}:
     get:
       tags:
@@ -691,6 +787,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
         '404':
           description: A matching search was not found.
     put:
@@ -708,6 +808,10 @@ paths:
       responses:
         '200':
           description: The search was stopped.
+          content:
+            application/json:
+              schema:
+                type: object
         '304':
           description: The search was not in progress.
     delete:
@@ -747,6 +851,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
         '404':
           description: A matching search was not found.
   /server:
@@ -757,6 +865,10 @@ paths:
       responses:
         '200':
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
         '403':
           description: Forbidden
           content:
@@ -810,6 +922,10 @@ paths:
       responses:
         '200':
           description: The authentication is valid.
+          content:
+            application/json:
+              schema:
+                type: object
         '401':
           description: Unauthorized
           content:
@@ -1106,6 +1222,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
   /transfers/uploads/all/completed:
     delete:
       tags:
@@ -1165,6 +1285,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
   /transfers/downloads:
     get:
       tags:
@@ -1179,6 +1303,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
   /transfers/downloads/{username}/{id}/position:
     get:
       tags:
@@ -1224,6 +1352,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
   /transfers/uploads/{username}:
     get:
       tags:
@@ -1239,6 +1371,10 @@ paths:
       responses:
         '200':
           description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
   /users/{username}/endpoint:
     get:
       tags:

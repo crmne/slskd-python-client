@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **logs_get**
-> logs_get()
+> object logs_get()
 
 Gets the last few application logs.
 
@@ -46,7 +46,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Gets the last few application logs.
-        await api_instance.logs_get()
+        api_response = await api_instance.logs_get()
+        print("The response of LogsApi->logs_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling LogsApi->logs_get: %s\n" % e)
 ```
@@ -57,7 +59,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -66,7 +68,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

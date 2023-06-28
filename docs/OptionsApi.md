@@ -226,7 +226,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **options_yaml_get**
-> options_yaml_get()
+> object options_yaml_get()
 
 
 
@@ -263,7 +263,9 @@ async with slskd.ApiClient(configuration) as api_client:
     api_instance = slskd.OptionsApi(api_client)
 
     try:
-        await api_instance.options_yaml_get()
+        api_response = await api_instance.options_yaml_get()
+        print("The response of OptionsApi->options_yaml_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling OptionsApi->options_yaml_get: %s\n" % e)
 ```
@@ -274,7 +276,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -283,7 +285,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -293,7 +295,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **options_yaml_location_get**
-> options_yaml_location_get()
+> object options_yaml_location_get()
 
 
 
@@ -330,7 +332,9 @@ async with slskd.ApiClient(configuration) as api_client:
     api_instance = slskd.OptionsApi(api_client)
 
     try:
-        await api_instance.options_yaml_location_get()
+        api_response = await api_instance.options_yaml_location_get()
+        print("The response of OptionsApi->options_yaml_location_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling OptionsApi->options_yaml_location_get: %s\n" % e)
 ```
@@ -341,7 +345,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -350,7 +354,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -360,7 +364,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **options_yaml_post**
-> options_yaml_post(body=body)
+> object options_yaml_post(body=body)
 
 
 
@@ -398,7 +402,9 @@ async with slskd.ApiClient(configuration) as api_client:
     body = 'body_example' # str |  (optional)
 
     try:
-        await api_instance.options_yaml_post(body=body)
+        api_response = await api_instance.options_yaml_post(body=body)
+        print("The response of OptionsApi->options_yaml_post:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling OptionsApi->options_yaml_post: %s\n" % e)
 ```
@@ -412,7 +418,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -421,7 +427,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -431,7 +437,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **options_yaml_validate_post**
-> options_yaml_validate_post(body=body)
+> object options_yaml_validate_post(body=body)
 
 
 
@@ -469,7 +475,9 @@ async with slskd.ApiClient(configuration) as api_client:
     body = 'body_example' # str |  (optional)
 
     try:
-        await api_instance.options_yaml_validate_post(body=body)
+        api_response = await api_instance.options_yaml_validate_post(body=body)
+        print("The response of OptionsApi->options_yaml_validate_post:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling OptionsApi->options_yaml_validate_post: %s\n" % e)
 ```
@@ -483,7 +491,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -492,7 +500,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

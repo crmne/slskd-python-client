@@ -478,19 +478,19 @@ class OptionsApi(object):
         )
 
     @overload
-    async def options_yaml_get(self, **kwargs) -> None:  # noqa: E501
+    async def options_yaml_get(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def options_yaml_get(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def options_yaml_get(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """options_yaml_get  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -508,7 +508,7 @@ class OptionsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -551,7 +551,7 @@ class OptionsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -593,10 +593,17 @@ class OptionsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/options/yaml",
@@ -618,19 +625,19 @@ class OptionsApi(object):
         )
 
     @overload
-    async def options_yaml_location_get(self, **kwargs) -> None:  # noqa: E501
+    async def options_yaml_location_get(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def options_yaml_location_get(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def options_yaml_location_get(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """options_yaml_location_get  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -648,7 +655,7 @@ class OptionsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -693,7 +700,7 @@ class OptionsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -735,10 +742,17 @@ class OptionsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/options/yaml/location",
@@ -762,7 +776,7 @@ class OptionsApi(object):
     @overload
     async def options_yaml_post(
         self, body: Optional[StrictStr] = None, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -771,7 +785,7 @@ class OptionsApi(object):
         body: Optional[StrictStr] = None,
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -780,7 +794,7 @@ class OptionsApi(object):
         body: Optional[StrictStr] = None,
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """options_yaml_post  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -800,7 +814,7 @@ class OptionsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -847,7 +861,7 @@ class OptionsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -892,6 +906,11 @@ class OptionsApi(object):
         if _params["body"] is not None:
             _body_params = _params["body"]
 
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get(
             "_content_type",
@@ -903,7 +922,9 @@ class OptionsApi(object):
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/options/yaml",
@@ -927,7 +948,7 @@ class OptionsApi(object):
     @overload
     async def options_yaml_validate_post(
         self, body: Optional[StrictStr] = None, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -936,7 +957,7 @@ class OptionsApi(object):
         body: Optional[StrictStr] = None,
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -945,7 +966,7 @@ class OptionsApi(object):
         body: Optional[StrictStr] = None,
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """options_yaml_validate_post  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -965,7 +986,7 @@ class OptionsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -1014,7 +1035,7 @@ class OptionsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1059,6 +1080,11 @@ class OptionsApi(object):
         if _params["body"] is not None:
             _body_params = _params["body"]
 
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get(
             "_content_type",
@@ -1070,7 +1096,9 @@ class OptionsApi(object):
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/options/yaml/validate",

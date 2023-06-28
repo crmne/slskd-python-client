@@ -355,19 +355,19 @@ class ServerApi(object):
         )
 
     @overload
-    async def server_put(self, **kwargs) -> None:  # noqa: E501
+    async def server_put(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def server_put(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def server_put(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Connects the client.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -385,7 +385,7 @@ class ServerApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -428,7 +428,7 @@ class ServerApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -478,7 +478,10 @@ class ServerApi(object):
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+            "403": "ProblemDetails",
+        }
 
         return self.api_client.call_api(
             "/server",

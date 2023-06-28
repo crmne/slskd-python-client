@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **relay_agent_delete**
-> relay_agent_delete()
+> object relay_agent_delete()
 
 Disconnects from the connected controller.
 
@@ -50,7 +50,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Disconnects from the connected controller.
-        await api_instance.relay_agent_delete()
+        api_response = await api_instance.relay_agent_delete()
+        print("The response of RelayApi->relay_agent_delete:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling RelayApi->relay_agent_delete: %s\n" % e)
 ```
@@ -61,7 +63,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -70,7 +72,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -80,7 +82,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **relay_agent_put**
-> relay_agent_put()
+> object relay_agent_put()
 
 Connects to the configured controller.
 
@@ -118,7 +120,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Connects to the configured controller.
-        await api_instance.relay_agent_put()
+        api_response = await api_instance.relay_agent_put()
+        print("The response of RelayApi->relay_agent_put:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling RelayApi->relay_agent_put: %s\n" % e)
 ```
@@ -129,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -138,7 +142,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -148,7 +152,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **relay_controller_downloads_token_get**
-> relay_controller_downloads_token_get(token)
+> object relay_controller_downloads_token_get(token)
 
 Downloads a file from the connected controller.
 
@@ -187,7 +191,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Downloads a file from the connected controller.
-        await api_instance.relay_controller_downloads_token_get(token)
+        api_response = await api_instance.relay_controller_downloads_token_get(token)
+        print("The response of RelayApi->relay_controller_downloads_token_get:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling RelayApi->relay_controller_downloads_token_get: %s\n" % e)
 ```
@@ -201,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -210,7 +216,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -220,7 +226,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **relay_controller_files_token_post**
-> relay_controller_files_token_post(token)
+> object relay_controller_files_token_post(token)
 
 Uploads a file to the connected controller.
 
@@ -259,7 +265,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Uploads a file to the connected controller.
-        await api_instance.relay_controller_files_token_post(token)
+        api_response = await api_instance.relay_controller_files_token_post(token)
+        print("The response of RelayApi->relay_controller_files_token_post:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling RelayApi->relay_controller_files_token_post: %s\n" % e)
 ```
@@ -273,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -282,7 +290,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -292,7 +300,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **relay_controller_shares_token_post**
-> relay_controller_shares_token_post(token)
+> object relay_controller_shares_token_post(token)
 
 Uploads share information to the connected controller.
 
@@ -331,7 +339,9 @@ async with slskd.ApiClient(configuration) as api_client:
 
     try:
         # Uploads share information to the connected controller.
-        await api_instance.relay_controller_shares_token_post(token)
+        api_response = await api_instance.relay_controller_shares_token_post(token)
+        print("The response of RelayApi->relay_controller_shares_token_post:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling RelayApi->relay_controller_shares_token_post: %s\n" % e)
 ```
@@ -345,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -354,7 +364,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

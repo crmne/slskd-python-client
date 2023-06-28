@@ -38,19 +38,19 @@ class SearchesApi(object):
         self.api_client = api_client
 
     @overload
-    async def searches_get(self, **kwargs) -> None:  # noqa: E501
+    async def searches_get(self, **kwargs) -> object:  # noqa: E501
         ...
 
     @overload
     def searches_get(
         self, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def searches_get(
         self, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets the list of active and completed searches.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -68,7 +68,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -111,7 +111,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -153,10 +153,17 @@ class SearchesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+        }
 
         return self.api_client.call_api(
             "/searches",
@@ -363,7 +370,7 @@ class SearchesApi(object):
             ),
         ] = None,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -380,7 +387,7 @@ class SearchesApi(object):
         ] = None,
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -397,7 +404,7 @@ class SearchesApi(object):
         ] = None,
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets the state of the search corresponding to the specified id.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -419,7 +426,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -480,7 +487,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -527,10 +534,18 @@ class SearchesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+            "404": None,
+        }
 
         return self.api_client.call_api(
             "/searches/{id}",
@@ -558,7 +573,7 @@ class SearchesApi(object):
             StrictStr, Field(..., description="The unique id of the search.")
         ],
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -569,7 +584,7 @@ class SearchesApi(object):
         ],
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -580,7 +595,7 @@ class SearchesApi(object):
         ],
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Stops the search corresponding to the specified id.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -600,7 +615,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -651,7 +666,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -695,10 +710,18 @@ class SearchesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+            "304": None,
+        }
 
         return self.api_client.call_api(
             "/searches/{id}",
@@ -726,7 +749,7 @@ class SearchesApi(object):
             StrictStr, Field(..., description="The unique id of the search.")
         ],
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -737,7 +760,7 @@ class SearchesApi(object):
         ],
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -748,7 +771,7 @@ class SearchesApi(object):
         ],
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Gets the state of the search corresponding to the specified id.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -768,7 +791,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -819,7 +842,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -863,10 +886,18 @@ class SearchesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+            "404": None,
+        }
 
         return self.api_client.call_api(
             "/searches/{id}/responses",
@@ -894,7 +925,7 @@ class SearchesApi(object):
             Optional[SearchRequest], Field(description="The search request.")
         ] = None,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -905,7 +936,7 @@ class SearchesApi(object):
         ] = None,
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -916,7 +947,7 @@ class SearchesApi(object):
         ] = None,
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Performs a search for the specified request.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -936,7 +967,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -987,7 +1018,7 @@ class SearchesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1032,6 +1063,11 @@ class SearchesApi(object):
         if _params["search_request"] is not None:
             _body_params = _params["search_request"]
 
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
+
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get(
             "_content_type",
@@ -1043,7 +1079,11 @@ class SearchesApi(object):
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+            "400": None,
+            "500": None,
+        }
 
         return self.api_client.call_api(
             "/searches",

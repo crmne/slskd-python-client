@@ -586,7 +586,7 @@ class ConversationsApi(object):
     @overload
     async def conversations_username_id_put(
         self, username: StrictStr, id: StrictInt, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
@@ -596,7 +596,7 @@ class ConversationsApi(object):
         id: StrictInt,
         async_req: Optional[bool] = True,
         **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
@@ -606,7 +606,7 @@ class ConversationsApi(object):
         id: StrictInt,
         async_req: Optional[bool] = None,
         **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Acknowledges the given message id for the given username.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -628,7 +628,7 @@ class ConversationsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -679,7 +679,7 @@ class ConversationsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -734,7 +734,10 @@ class ConversationsApi(object):
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+            "404": "ProblemDetails",
+        }
 
         return self.api_client.call_api(
             "/conversations/{username}/{id}",
@@ -1121,19 +1124,19 @@ class ConversationsApi(object):
     @overload
     async def conversations_username_put(
         self, username: StrictStr, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @overload
     def conversations_username_put(
         self, username: StrictStr, async_req: Optional[bool] = True, **kwargs
-    ) -> None:  # noqa: E501
+    ) -> object:  # noqa: E501
         ...
 
     @validate_arguments
     def conversations_username_put(
         self, username: StrictStr, async_req: Optional[bool] = None, **kwargs
-    ) -> Union[None, Awaitable[None]]:  # noqa: E501
+    ) -> Union[object, Awaitable[object]]:  # noqa: E501
         """Acknowledges all messages from the given username.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1153,7 +1156,7 @@ class ConversationsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: object
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -1202,7 +1205,7 @@ class ConversationsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1254,7 +1257,10 @@ class ConversationsApi(object):
         # authentication setting
         _auth_settings = ["ApiKeyAuth"]  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            "200": "object",
+            "404": "ProblemDetails",
+        }
 
         return self.api_client.call_api(
             "/conversations/{username}",
