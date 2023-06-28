@@ -1,0 +1,16 @@
+---
+version: "2"
+services:
+  slskd:
+    image: slskd/slskd
+    container_name: slskd
+    command: --swagger
+    ports:
+      - "5030:5030"
+      - "5031:5031"
+      - "50300:50300"
+    environment:
+      - SLSKD_REMOTE_CONFIGURATION=true
+    volumes:
+      - /Users/carmine/slskd:/app
+    restart: always

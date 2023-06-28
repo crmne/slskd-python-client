@@ -1,0 +1,2922 @@
+openapi: 3.0.1
+info:
+  title: slskd
+  version: v0
+paths:
+  /application:
+    get:
+      tags:
+        - Application
+      summary: Gets the current state of the application.
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Application
+      summary: Stops the application.
+      responses:
+        '200':
+          description: Success
+    put:
+      tags:
+        - Application
+      summary: Restarts the application.
+      responses:
+        '200':
+          description: Success
+  /application/version:
+    get:
+      tags:
+        - Application
+      summary: Gets the current application version.
+      responses:
+        '200':
+          description: Success
+  /application/version/latest:
+    get:
+      tags:
+        - Application
+      summary: Checks for updates.
+      parameters:
+        - name: forceCheck
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+  /application/gc:
+    post:
+      tags:
+        - Application
+      summary: Forces garbage collection.
+      responses:
+        '200':
+          description: Success
+  /application/dump:
+    get:
+      tags:
+        - Application
+      responses:
+        '200':
+          description: Success
+  /conversations/{username}/{id}:
+    put:
+      tags:
+        - Conversations
+      summary: Acknowledges the given message id for the given username.
+      parameters:
+        - name: username
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request completed successfully.
+        '404':
+          description: >-
+            A conversation with the specified username, or a message matching
+            the specified id could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /conversations/{username}:
+    put:
+      tags:
+        - Conversations
+      summary: Acknowledges all messages from the given username.
+      parameters:
+        - name: username
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+        '404':
+          description: A conversation with the specified username could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Conversations
+      summary: Closes the conversation associated with the given username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: The request completed successfully.
+        '404':
+          description: A conversation with the specified username could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+        - Conversations
+      summary: Gets the conversation associated with the specified username.
+      parameters:
+        - name: username
+          in: path
+          description: The username associated with the desired conversation.
+          required: true
+          schema:
+            type: string
+        - name: includeMessages
+          in: query
+          description: ''
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conversation'
+        '404':
+          description: A matching search was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    post:
+      tags:
+        - Conversations
+      summary: Sends a private message to the specified username.
+      parameters:
+        - name: username
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: The request completed successfully.
+        '400':
+          description: The specified message is null or empty.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /conversations:
+    get:
+      tags:
+        - Conversations
+      summary: Gets all active conversations.
+      parameters:
+        - name: includeInactive
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: unAcknowledgedOnly
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Conversation'
+  /conversations/{username}/messages:
+    get:
+      tags:
+        - Conversations
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: unAcknowledgedOnly
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrivateMessage'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /logs:
+    get:
+      tags:
+        - Logs
+      summary: Gets the last few application logs.
+      responses:
+        '200':
+          description: Success
+  /metrics:
+    get:
+      tags:
+        - Metrics
+      summary: Gets application metrics.
+      responses:
+        '200':
+          description: Success
+  /options:
+    get:
+      tags:
+        - Options
+      summary: Gets the current application options.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Options'
+  /options/startup:
+    get:
+      tags:
+        - Options
+      summary: Gets the application options provided at startup.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Options'
+  /options/debug:
+    get:
+      tags:
+        - Options
+      summary: Gets the debug view of the current application options.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+  /options/yaml/location:
+    get:
+      tags:
+        - Options
+      responses:
+        '200':
+          description: Success
+  /options/yaml:
+    get:
+      tags:
+        - Options
+      responses:
+        '200':
+          description: Success
+    post:
+      tags:
+        - Options
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Success
+  /options/yaml/validate:
+    post:
+      tags:
+        - Options
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Success
+  /publicchat:
+    post:
+      tags:
+        - PublicChat
+      summary: Starts public chat.
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - PublicChat
+      summary: Stops public chat.
+      responses:
+        '200':
+          description: Success
+  /relay/agent:
+    put:
+      tags:
+        - Relay
+      summary: Connects to the configured controller.
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Relay
+      summary: Disconnects from the connected controller.
+      responses:
+        '200':
+          description: Success
+  /relay/controller/downloads/{token}:
+    get:
+      tags:
+        - Relay
+      summary: Downloads a file from the connected controller.
+      parameters:
+        - name: token
+          in: path
+          description: The unique identifier for the request.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /relay/controller/files/{token}:
+    post:
+      tags:
+        - Relay
+      summary: Uploads a file to the connected controller.
+      parameters:
+        - name: token
+          in: path
+          description: The unique identifier for the request.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /relay/controller/shares/{token}:
+    post:
+      tags:
+        - Relay
+      summary: Uploads share information to the connected controller.
+      parameters:
+        - name: token
+          in: path
+          description: The unique identifier for the request.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /rooms/joined:
+    get:
+      tags:
+        - Rooms
+      summary: Gets all rooms.
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Room'
+    post:
+      tags:
+        - Rooms
+      summary: Joins a room.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '304':
+          description: The room has already been joined.
+  /rooms/joined/{roomName}:
+    get:
+      tags:
+        - Rooms
+      summary: Gets the specified room.
+      parameters:
+        - name: roomName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '404':
+          description: The specified roomName could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Rooms
+      summary: Leaves a room.
+      parameters:
+        - name: roomName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: The request completed successfully.
+        '404':
+          description: The room has not been joined.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /rooms/joined/{roomName}/messages:
+    post:
+      tags:
+        - Rooms
+      summary: Sends a message to the specified room.
+      parameters:
+        - name: roomName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: The request completed successfully.
+        '404':
+          description: The specified roomName could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+        - Rooms
+      summary: Gets the current list of messages for the specified room.
+      parameters:
+        - name: roomName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoomMessage'
+        '404':
+          description: The specified roomName could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /rooms/joined/{roomName}/ticker:
+    post:
+      tags:
+        - Rooms
+      summary: Sets a ticker for the specified room.
+      parameters:
+        - name: roomName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: The request completed successfully.
+        '404':
+          description: The specified roomName could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /rooms/joined/{roomName}/members:
+    post:
+      tags:
+        - Rooms
+      summary: Adds a member to a private room.
+      parameters:
+        - name: roomName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: The request completed successfully.
+        '404':
+          description: The specified roomName could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /rooms/joined/{roomName}/users:
+    get:
+      tags:
+        - Rooms
+      summary: Gets the current list of users for the specified room.
+      parameters:
+        - name: roomName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserData'
+        '404':
+          description: The specified roomName could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /rooms/available:
+    get:
+      tags:
+        - Rooms
+      summary: Gets a list of rooms from the server.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoomInfo'
+  /searches:
+    post:
+      tags:
+        - Searches
+      summary: Performs a search for the specified request.
+      requestBody:
+        description: The search request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: The search completed successfully.
+        '400':
+          description: The specified request was malformed.
+        '500':
+          description: The search terminated abnormally.
+    get:
+      tags:
+        - Searches
+      summary: Gets the list of active and completed searches.
+      responses:
+        '200':
+          description: Success
+  /searches/{id}:
+    get:
+      tags:
+        - Searches
+      summary: Gets the state of the search corresponding to the specified id.
+      parameters:
+        - name: id
+          in: path
+          description: The unique id of the search.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: includeResponses
+          in: query
+          description: >-
+            A value indicating whether to include search responses in the
+            response.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: The request completed successfully.
+        '404':
+          description: A matching search was not found.
+    put:
+      tags:
+        - Searches
+      summary: Stops the search corresponding to the specified id.
+      parameters:
+        - name: id
+          in: path
+          description: The unique id of the search.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The search was stopped.
+        '304':
+          description: The search was not in progress.
+    delete:
+      tags:
+        - Searches
+      summary: Deletes the search corresponding to the specified id.
+      parameters:
+        - name: id
+          in: path
+          description: The unique id of the search.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: The search was deleted.
+        '404':
+          description: A search with the specified id could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /searches/{id}/responses:
+    get:
+      tags:
+        - Searches
+      summary: Gets the state of the search corresponding to the specified id.
+      parameters:
+        - name: id
+          in: path
+          description: The unique id of the search.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The request completed successfully.
+        '404':
+          description: A matching search was not found.
+  /server:
+    put:
+      tags:
+        - Server
+      summary: Connects the client.
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Server
+      summary: Disconnects the client.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '204':
+          description: No Content
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+        - Server
+      summary: Retrieves the current state of the server.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerState'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /session:
+    get:
+      tags:
+        - Session
+      summary: Checks whether the provided authentication is valid.
+      description: >-
+        This is a no-op provided so that the application can test for an expired
+        token on load.
+      responses:
+        '200':
+          description: The authentication is valid.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The authentication is is invalid.
+    post:
+      tags:
+        - Session
+      summary: Logs in.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Login failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                type: string
+  /session/enabled:
+    get:
+      tags:
+        - Session
+      summary: Checks whether security is enabled.
+      responses:
+        '200':
+          description: True if security is enabled, false otherwise.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /shares:
+    get:
+      tags:
+        - Shares
+      summary: Gets the current list of shares.
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Share'
+    put:
+      tags:
+        - Shares
+      summary: Initiates a scan of the configured shares.
+      responses:
+        '204':
+          description: The request completed successfully.
+        '409':
+          description: A share scan is already in progress.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Shares
+      summary: Cancels a share scan, if one is running.
+      responses:
+        '204':
+          description: The request completed successfully.
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '409':
+          description: A share scan was not in progress.
+  /shares/{id}:
+    get:
+      tags:
+        - Shares
+      summary: Gets the share associated with the specified <see paramref="id" />.
+      parameters:
+        - name: id
+          in: path
+          description: The id of the share.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Share'
+        '404':
+          description: The requested share could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /shares/contents:
+    get:
+      tags:
+        - Shares
+      summary: Returns a list of all shared directories and files.
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Directory'
+  /shares/{id}/contents:
+    get:
+      tags:
+        - Shares
+      summary: >-
+        Gets the contents of the share associated with the specified <see
+        paramref="id" />.
+      parameters:
+        - name: id
+          in: path
+          description: The id of the share.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Directory'
+        '404':
+          description: The requested share could not be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /transfers/downloads/{username}/{id}:
+    delete:
+      tags:
+        - Transfers
+      summary: Cancels the specified download.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the download source.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: The id of the download.
+          required: true
+          schema:
+            type: string
+        - name: remove
+          in: query
+          description: >-
+            A value indicating whether the tracked download should be removed
+            after cancellation.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '204':
+          description: The download was cancelled successfully.
+        '404':
+          description: The specified download was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+        - Transfers
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transfer'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /transfers/downloads/all/completed:
+    delete:
+      tags:
+        - Transfers
+      summary: >-
+        Removes all completed downloads, regardless of whether they failed or
+        succeeded.
+      responses:
+        '204':
+          description: The downloads were removed successfully.
+  /transfers/uploads/{username}/{id}:
+    delete:
+      tags:
+        - Transfers
+      summary: Cancels the specified upload.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the upload destination.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: The id of the upload.
+          required: true
+          schema:
+            type: string
+        - name: remove
+          in: query
+          description: >-
+            A value indicating whether the tracked upload should be removed
+            after cancellation.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '204':
+          description: The upload was cancelled successfully.
+        '404':
+          description: The specified upload was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+        - Transfers
+      summary: >-
+        Gets the upload for the specified username matching the specified
+        filename.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the upload destination.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: The id of the upload.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+  /transfers/uploads/all/completed:
+    delete:
+      tags:
+        - Transfers
+      summary: >-
+        Removes all completed uploads, regardless of whether they failed or
+        succeeded.
+      responses:
+        '204':
+          description: The uploads were removed successfully.
+  /transfers/downloads/{username}:
+    post:
+      tags:
+        - Transfers
+      summary: Enqueues the specified download.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the download source.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: The list of download requests.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/QueueDownloadRequest'
+      responses:
+        '201':
+          description: The download was successfully enqueued.
+        '403':
+          description: The download was rejected.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: An unexpected error was encountered.
+          content:
+            application/json:
+              schema:
+                type: string
+    get:
+      tags:
+        - Transfers
+      summary: Gets all downloads for the specified username.
+      parameters:
+        - name: username
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+  /transfers/downloads:
+    get:
+      tags:
+        - Transfers
+      summary: Gets all downloads.
+      parameters:
+        - name: includeRemoved
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: The request completed successfully.
+  /transfers/downloads/{username}/{id}/position:
+    get:
+      tags:
+        - Transfers
+      summary: "Gets the downlaod for the specified username matching the specified filename, and requests\r\nthe current place in the remote queue of the specified download."
+      parameters:
+        - name: username
+          in: path
+          description: The username of the download source.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: The id of the download.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transfer'
+        '404':
+          description: The specified download was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /transfers/uploads:
+    get:
+      tags:
+        - Transfers
+      summary: Gets all uploads.
+      parameters:
+        - name: includeRemoved
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: The request completed successfully.
+  /transfers/uploads/{username}:
+    get:
+      tags:
+        - Transfers
+      summary: Gets all uploads for the specified username.
+      parameters:
+        - name: username
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+  /users/{username}/endpoint:
+    get:
+      tags:
+        - Users
+      summary: Retrieves the address of the specified username.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the user.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPEndPoint'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /users/{username}/browse:
+    get:
+      tags:
+        - Users
+      summary: Retrieves the files shared by the specified username.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the user.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Directory'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /users/{username}/browse/status:
+    get:
+      tags:
+        - Users
+      summary: >-
+        Retrieves the status of the current browse operation for the specified
+        username, if any.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the user.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: number
+                format: double
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /users/{username}/directory:
+    post:
+      tags:
+        - Users
+      summary: >-
+        Retrieves the files from the specified directory from the specified
+        username.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the user.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: The directory contents request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryContentsRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Directory'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /users/{username}/info:
+    get:
+      tags:
+        - Users
+      summary: Retrieves information about the specified username.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the user.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /users/{username}/status:
+    get:
+      tags:
+        - Users
+      summary: Retrieves status for the specified username.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the user.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    AddressFamily:
+      enum:
+        - Unspecified
+        - Unix
+        - InterNetwork
+        - ImpLink
+        - Pup
+        - Chaos
+        - NS
+        - Osi
+        - Ecma
+        - DataKit
+        - Ccitt
+        - Sna
+        - DecNet
+        - DataLink
+        - Lat
+        - HyperChannel
+        - AppleTalk
+        - NetBios
+        - VoiceView
+        - FireFox
+        - Banyan
+        - Atm
+        - InterNetworkV6
+        - Cluster
+        - Ieee12844
+        - Irda
+        - NetworkDesigners
+        - Max
+        - Packet
+        - ControllerAreaNetwork
+        - Unknown
+      type: string
+    ApiKeyOptions:
+      type: object
+      properties:
+        key:
+          maxLength: 255
+          minLength: 16
+          type: string
+          description: Gets the API key value.
+          nullable: true
+        role:
+          type: string
+          description: Gets the role for the key.
+          nullable: true
+        cidr:
+          type: string
+          description: >-
+            Gets the comma separated list of CIDRs that are authorized to use
+            the key.
+          nullable: true
+      additionalProperties: false
+      description: API key options.
+    BlacklistedOptions:
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            type: string
+          description: Gets the list of group member usernames.
+          nullable: true
+      additionalProperties: false
+      description: Built in blacklisted group options.
+    BufferOptions:
+      type: object
+      properties:
+        read:
+          maximum: 2147483647
+          minimum: 1024
+          type: integer
+          description: Gets the connection read buffer size, in bytes.
+          format: int32
+        write:
+          maximum: 2147483647
+          minimum: 1024
+          type: integer
+          description: Gets the connection write buffer size, in bytes.
+          format: int32
+        transfer:
+          maximum: 2147483647
+          minimum: 81920
+          type: integer
+          description: Gets the read/write buffer size for transfers, in bytes.
+          format: int32
+        writeQueue:
+          maximum: 5000
+          minimum: 5
+          type: integer
+          description: Gets the size of the queue for double buffered writes.
+          format: int32
+      additionalProperties: false
+      description: Connection buffer options.
+    BuiltInOptions:
+      type: object
+      properties:
+        upload:
+          $ref: '#/components/schemas/UploadOptions'
+      additionalProperties: false
+      description: Built in user group options.
+    CertificateOptions:
+      type: object
+      properties:
+        pfx:
+          type: string
+          description: Gets the path to the the X509 certificate .pfx file.
+          nullable: true
+        password:
+          type: string
+          description: Gets the password for the X509 certificate.
+          nullable: true
+      additionalProperties: false
+      description: Certificate options.
+    ConnectionOptions:
+      type: object
+      properties:
+        timeout:
+          $ref: '#/components/schemas/TimeoutOptions'
+        buffer:
+          $ref: '#/components/schemas/BufferOptions'
+        proxy:
+          $ref: '#/components/schemas/ProxyOptions'
+      additionalProperties: false
+      description: Connection options.
+    Conversation:
+      type: object
+      properties:
+        username:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+        unAcknowledgedMessageCount:
+          type: integer
+          format: int32
+        hasUnAcknowledgedMessages:
+          type: boolean
+          readOnly: true
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivateMessage'
+          nullable: true
+      additionalProperties: false
+    DiagnosticLevel:
+      enum:
+        - None
+        - Warning
+        - Info
+        - Debug
+      type: string
+    DirectoriesOptions:
+      type: object
+      properties:
+        incomplete:
+          type: string
+          description: Gets the path where incomplete downloads are saved.
+          nullable: true
+        downloads:
+          type: string
+          description: Gets the path where downloaded files are saved.
+          nullable: true
+      additionalProperties: false
+      description: Directory options.
+    Directory:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        fileCount:
+          type: integer
+          format: int32
+          readOnly: true
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    DirectoryContentsRequest:
+      type: object
+      properties:
+        directory:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DistributedNetworkOptions:
+      type: object
+      properties:
+        disabled:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the distributed network should be
+            disabled.
+        disableChildren:
+          type: boolean
+          description: >-
+            Gets a value indicating whether to accept distributed child
+            connections.
+        childLimit:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Gets the distributed child connection limit.
+          format: int32
+        logging:
+          type: boolean
+          description: >-
+            Gets a value indicating whether distributed network logging should
+            be enabled.
+      additionalProperties: false
+      description: Distributed network options.
+    FeatureOptions:
+      type: object
+      properties:
+        swagger:
+          type: boolean
+          description: >-
+            Gets a value indicating whether swagger documentation and UI should
+            be enabled.
+      additionalProperties: false
+      description: Feature options.
+    File:
+      type: object
+      properties:
+        attributeCount:
+          type: integer
+          format: int32
+          readOnly: true
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileAttribute'
+          nullable: true
+          readOnly: true
+        bitDepth:
+          type: integer
+          format: int32
+          nullable: true
+          readOnly: true
+        bitRate:
+          type: integer
+          format: int32
+          nullable: true
+          readOnly: true
+        code:
+          type: integer
+          format: int32
+        extension:
+          type: string
+          nullable: true
+        filename:
+          type: string
+          nullable: true
+        isVariableBitRate:
+          type: boolean
+          nullable: true
+          readOnly: true
+        length:
+          type: integer
+          format: int32
+          nullable: true
+          readOnly: true
+        sampleRate:
+          type: integer
+          format: int32
+          nullable: true
+          readOnly: true
+        size:
+          type: integer
+          format: int64
+      additionalProperties: false
+    FileAttribute:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FileAttributeType'
+        value:
+          type: integer
+          format: int32
+      additionalProperties: false
+    FileAttributeType:
+      enum:
+        - BitRate
+        - Length
+        - VariableBitRate
+        - SampleRate
+        - BitDepth
+      type: string
+    FiltersOptions:
+      type: object
+      properties:
+        search:
+          $ref: '#/components/schemas/SearchOptions'
+      additionalProperties: false
+      description: Filter options.
+    FlagsOptions:
+      type: object
+      properties:
+        noLogo:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the logo should be suppressed on
+            startup.
+        noStart:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the application should quit after
+            initialization.
+        noConnect:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the application should connect to
+            the Soulseek network on startup.
+        noShareScan:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the application should scan shared
+            directories on startup.
+        forceShareScan:
+          type: boolean
+          description: >-
+            Gets a value indicating whether shares should be forcibly re-scanned
+            on startup.
+        noVersionCheck:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the application should check for a
+            newer version on startup.
+        logSQL:
+          type: boolean
+          description: >-
+            Gets a value indicating whether Entity Framework queries should be
+            logged.
+        experimental:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the application should run in
+            experimental mode.
+        volatile:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the application should run in
+            volatile mode.
+        caseSensitiveRegEx:
+          type: boolean
+          description: >-
+            Gets a value indicating whether user-defined regular expressions are
+            case sensitive.
+      additionalProperties: false
+      description: Optional flags.
+    FtpOptions:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Gets a value indicating whether the FTP integration is enabled.
+        address:
+          type: string
+          description: Gets the FTP address.
+          nullable: true
+        port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          description: Gets the FTP port.
+          format: int32
+        encryptionMode:
+          type: string
+          description: Gets the FTP encryption mode.
+          nullable: true
+        ignoreCertificateErrors:
+          type: boolean
+          description: >-
+            Gets a value indicating whether FTP certificate errors should be
+            ignored.
+        username:
+          type: string
+          description: Gets the FTP username.
+          nullable: true
+        password:
+          type: string
+          description: Gets the FTP password.
+          nullable: true
+        remotePath:
+          type: string
+          description: Gets the remote path for uploads.
+          nullable: true
+        overwriteExisting:
+          type: boolean
+          description: >-
+            Gets a value indicating whether existing files should be
+            overwritten.
+        connectionTimeout:
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: Gets the connection timeout value, in milliseconds.
+          format: int32
+        retryAttempts:
+          maximum: 5
+          minimum: 0
+          type: integer
+          description: Gets the number of times failing uploads will be retried.
+          format: int32
+      additionalProperties: false
+      description: FTP options.
+    GlobalDownloadOptions:
+      type: object
+      properties:
+        slots:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Gets the limit for the total number of download slots.
+          format: int32
+        speedLimit:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Gets the total download speed limit.
+          format: int32
+      additionalProperties: false
+      description: Gets global download options.
+    GlobalOptions:
+      type: object
+      properties:
+        upload:
+          $ref: '#/components/schemas/GlobalUploadOptions'
+        download:
+          $ref: '#/components/schemas/GlobalDownloadOptions'
+      additionalProperties: false
+      description: Global options.
+    GlobalUploadOptions:
+      type: object
+      properties:
+        slots:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Gets the limit for the total number of upload slots.
+          format: int32
+        speedLimit:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Gets the total upload speed limit.
+          format: int32
+      additionalProperties: false
+      description: Global upload options.
+    GroupsOptions:
+      type: object
+      properties:
+        default:
+          $ref: '#/components/schemas/BuiltInOptions'
+        leechers:
+          $ref: '#/components/schemas/LeecherOptions'
+        blacklisted:
+          $ref: '#/components/schemas/BlacklistedOptions'
+        userDefined:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/UserDefinedOptions'
+          description: Gets user defined groups and options.
+          nullable: true
+      additionalProperties: false
+      description: User groups.
+    HttpsOptions:
+      type: object
+      properties:
+        disabled:
+          type: boolean
+          description: Gets a value indicating whether HTTPS should be disabled.
+        port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          description: Gets the HTTPS listen port.
+          format: int32
+        force:
+          type: boolean
+          description: >-
+            Gets a value indicating whether HTTP requests should be redirected
+            to HTTPS.
+        certificate:
+          $ref: '#/components/schemas/CertificateOptions'
+      additionalProperties: false
+      description: HTTPS options.
+    IPAddress:
+      type: object
+      properties:
+        addressFamily:
+          $ref: '#/components/schemas/AddressFamily'
+        scopeId:
+          type: integer
+          format: int64
+        isIPv6Multicast:
+          type: boolean
+          readOnly: true
+        isIPv6LinkLocal:
+          type: boolean
+          readOnly: true
+        isIPv6SiteLocal:
+          type: boolean
+          readOnly: true
+        isIPv6Teredo:
+          type: boolean
+          readOnly: true
+        isIPv6UniqueLocal:
+          type: boolean
+          readOnly: true
+        isIPv4MappedToIPv6:
+          type: boolean
+          readOnly: true
+        address:
+          type: integer
+          format: int64
+          deprecated: true
+      additionalProperties: false
+    IPEndPoint:
+      type: object
+      properties:
+        addressFamily:
+          $ref: '#/components/schemas/AddressFamily'
+        address:
+          $ref: '#/components/schemas/IPAddress'
+        port:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Info:
+      type: object
+      properties:
+        description:
+          type: string
+          nullable: true
+        hasFreeUploadSlot:
+          type: boolean
+        hasPicture:
+          type: boolean
+        picture:
+          type: string
+          format: byte
+          nullable: true
+        queueLength:
+          type: integer
+          format: int32
+        uploadSlots:
+          type: integer
+          format: int32
+      additionalProperties: false
+    IntegrationOptions:
+      type: object
+      properties:
+        ftp:
+          $ref: '#/components/schemas/FtpOptions'
+        pushbullet:
+          $ref: '#/components/schemas/PushbulletOptions'
+      additionalProperties: false
+      description: Options for external integrations.
+    JwtOptions:
+      type: object
+      properties:
+        key:
+          maxLength: 255
+          minLength: 16
+          type: string
+          description: Gets the key with which to sign JWTs.
+          nullable: true
+        ttl:
+          maximum: 2147483647
+          minimum: 3600
+          type: integer
+          description: Gets the TTL for JWTs, in milliseconds.
+          format: int32
+      additionalProperties: false
+      description: JWT options.
+    LeecherOptions:
+      type: object
+      properties:
+        thresholds:
+          $ref: '#/components/schemas/ThresholdOptions'
+        upload:
+          $ref: '#/components/schemas/UploadOptions'
+      additionalProperties: false
+      description: Built in leecher group options.
+    LoggerOptions:
+      type: object
+      properties:
+        loki:
+          type: string
+          description: Gets the URL to a Grafana Loki instance to which to log.
+          nullable: true
+      additionalProperties: false
+      description: Logger options.
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MessageDirection:
+      enum:
+        - Out
+        - In
+      type: string
+    MetricsAuthenticationOptions:
+      type: object
+      properties:
+        disabled:
+          type: boolean
+          description: Gets a value indicating whether authentication should be disabled.
+        username:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the username for the metrics endpoint.
+          nullable: true
+        password:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the password for the metrics endpoint.
+          nullable: true
+      additionalProperties: false
+      description: Metrics endpoint authentication options.
+    MetricsOptions:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the metrics endpoint should be
+            enabled.
+        url:
+          type: string
+          description: Gets the url for the metrics endpoint.
+          nullable: true
+        authentication:
+          $ref: '#/components/schemas/MetricsAuthenticationOptions'
+      additionalProperties: false
+      description: Metrics options.
+    Options:
+      type: object
+      properties:
+        debug:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the application should run in debug
+            mode.
+        remoteConfiguration:
+          type: boolean
+          description: >-
+            Gets a value indicating whether remote configuration of options is
+            allowed.
+        instanceName:
+          type: string
+          description: Gets the unique name for this instance.
+          nullable: true
+        flags:
+          $ref: '#/components/schemas/FlagsOptions'
+        relay:
+          $ref: '#/components/schemas/RelayOptions'
+        directories:
+          $ref: '#/components/schemas/DirectoriesOptions'
+        shares:
+          $ref: '#/components/schemas/SharesOptions'
+        global:
+          $ref: '#/components/schemas/GlobalOptions'
+        groups:
+          $ref: '#/components/schemas/GroupsOptions'
+        filters:
+          $ref: '#/components/schemas/FiltersOptions'
+        rooms:
+          type: array
+          items:
+            type: string
+          description: Gets a list of rooms to automatically join upon connection.
+          nullable: true
+        web:
+          $ref: '#/components/schemas/WebOptions'
+        logger:
+          $ref: '#/components/schemas/LoggerOptions'
+        metrics:
+          $ref: '#/components/schemas/MetricsOptions'
+        feature:
+          $ref: '#/components/schemas/FeatureOptions'
+        soulseek:
+          $ref: '#/components/schemas/SoulseekOptions'
+        integration:
+          $ref: '#/components/schemas/IntegrationOptions'
+      additionalProperties: false
+      description: Application options.
+    PrivateMessage:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: The UTC timestamp of the message.
+          format: date-time
+        id:
+          type: integer
+          description: The unique message id, used to acknowledge receipt.
+          format: int32
+        username:
+          type: string
+          description: The username of the remote user.
+          nullable: true
+        direction:
+          $ref: '#/components/schemas/MessageDirection'
+        message:
+          type: string
+          description: The message.
+          nullable: true
+        isAcknowledged:
+          type: boolean
+          description: A value indicating whether the message has been acknowledged.
+      additionalProperties: false
+      description: A private message.
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    ProxyOptions:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Gets a value indicating whether the proxy is enabled.
+        address:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the proxy address.
+          nullable: true
+        port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          description: Gets the proxy port.
+          format: int32
+          nullable: true
+        username:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the proxy username, if applicable.
+          nullable: true
+        password:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the proxy password, if applicable.
+          nullable: true
+      additionalProperties: false
+      description: Connection proxy options.
+    PushbulletOptions:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: >-
+            Gets a value indicating whether the Pushbullet integration is
+            enabled.
+        accessToken:
+          type: string
+          description: Gets the Pushbullet API access token.
+          nullable: true
+        notificationPrefix:
+          type: string
+          description: Gets the prefix for Pushbullet notification titles.
+          nullable: true
+        notifyOnPrivateMessage:
+          type: boolean
+          description: >-
+            Gets a value indicating whether a Pushbullet notification should be
+            sent when a private message is received.
+        notifyOnRoomMention:
+          type: boolean
+          description: "Gets a value indicating whether a Pushbullet notification should be sent when the currently logged\r\nin user's username is mentioned in a room."
+        retryAttempts:
+          maximum: 5
+          minimum: 0
+          type: integer
+          description: >-
+            Gets the number of times failing Pushbullet notifications will be
+            retried.
+          format: int32
+        cooldownTime:
+          type: integer
+          description: >-
+            Gets the cooldown time for Pushbullet notifications, in
+            milliseconds.
+          format: int32
+      additionalProperties: false
+      description: Pushbullet options.
+    QueueDownloadRequest:
+      type: object
+      properties:
+        filename:
+          type: string
+          description: Gets or sets the filename to download.
+          nullable: true
+        size:
+          type: integer
+          description: Gets or sets the size of the file.
+          format: int64
+      additionalProperties: false
+    RelayAgentConfigurationOptions:
+      type: object
+      properties:
+        instanceName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the agent instance name.
+          nullable: true
+        secret:
+          maxLength: 255
+          minLength: 16
+          type: string
+          description: Gets the agent secret.
+          nullable: true
+        cidr:
+          type: string
+          description: >-
+            Gets the comma separated list of CIDRs that are authorized to
+            connect as this agent.
+          nullable: true
+      additionalProperties: false
+      description: Relay agent configuration options.
+    RelayControllerConfigurationOptions:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Gets the controller address.
+          format: uri
+          nullable: true
+        ignoreCertificateErrors:
+          type: boolean
+          description: >-
+            Gets a value indicating whether controller certificate errors should
+            be ignored.
+        apiKey:
+          maxLength: 255
+          minLength: 16
+          type: string
+          description: Gets the controller API key.
+          nullable: true
+        secret:
+          maxLength: 255
+          minLength: 16
+          type: string
+          description: Gets the controller secret.
+          nullable: true
+        downloads:
+          type: boolean
+          description: >-
+            Gets a value indicating whether to receive completed downloads from
+            the controller.
+      additionalProperties: false
+      description: Relay controller configuration options.
+    RelayOptions:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Gets a value indicating whether the relay is enabled.
+        mode:
+          type: string
+          description: Gets the relay mode.
+          nullable: true
+        controller:
+          $ref: '#/components/schemas/RelayControllerConfigurationOptions'
+        agents:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/RelayAgentConfigurationOptions'
+          description: Gets the agent configuration.
+          nullable: true
+      additionalProperties: false
+      description: Relay options.
+    Room:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The room name.
+          nullable: true
+        isPrivate:
+          type: boolean
+          description: A value indicating whether the room is private.
+        operatorCount:
+          type: integer
+          description: The number of operators in the room, if private.
+          format: int32
+          nullable: true
+        operators:
+          type: array
+          items:
+            type: string
+          description: The operators in the room, if private.
+          nullable: true
+        owner:
+          type: string
+          description: The owner of the room, if private.
+          nullable: true
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
+          description: The list of users in the room.
+          nullable: true
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoomMessage'
+          description: The list of messages.
+          nullable: true
+      additionalProperties: false
+    RoomInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        userCount:
+          type: integer
+          format: int32
+        users:
+          type: array
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    RoomMessage:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: The timestamp of the message.
+          format: date-time
+        username:
+          type: string
+          description: The username of the user who sent the message.
+          nullable: true
+        message:
+          type: string
+          description: The message.
+          nullable: true
+        roomName:
+          type: string
+          description: The room to which the message pertains.
+          nullable: true
+        direction:
+          $ref: '#/components/schemas/MessageDirection'
+      additionalProperties: false
+      description: A message sent to a room.
+    SearchOptions:
+      type: object
+      properties:
+        request:
+          type: array
+          items:
+            type: string
+          description: Gets the list of search request filters.
+          nullable: true
+      additionalProperties: false
+      description: Search filter options.
+    SearchRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique search identifier.
+          format: uuid
+          nullable: true
+        fileLimit:
+          type: integer
+          description: >-
+            Gets or sets the maximum number of file results to accept before the
+            search is considered complete. (Default = 10,000).
+          format: int32
+          nullable: true
+        filterResponses:
+          type: boolean
+          description: >-
+            Gets or sets a value indicating whether responses are to be
+            filtered. (Default = true).
+          nullable: true
+        maximumPeerQueueLength:
+          type: integer
+          description: >-
+            Gets or sets the maximum queue depth a peer may have in order for a
+            response to be processed. (Default = 1000000).
+          format: int32
+          nullable: true
+        minimumPeerUploadSpeed:
+          type: integer
+          description: >-
+            Gets or sets the minimum upload speed a peer must have in order for
+            a response to be processed. (Default = 0).
+          format: int32
+          nullable: true
+        minimumResponseFileCount:
+          type: integer
+          description: >-
+            Gets or sets the minimum number of files a response must contain in
+            order to be processed. (Default = 1).
+          format: int32
+          nullable: true
+        responseLimit:
+          type: integer
+          description: >-
+            Gets or sets the maximum number of search results to accept before
+            the search is considered complete. (Default = 100).
+          format: int32
+          nullable: true
+        searchText:
+          type: string
+          description: Gets or sets the search text.
+          nullable: true
+        searchTimeout:
+          type: integer
+          description: >-
+            Gets or sets the search timeout value, in seconds, used to determine
+            when the search is complete. (Default = 15).
+          format: int32
+          nullable: true
+        token:
+          type: integer
+          description: Gets or sets the search token.
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: A search request.
+    ServerState:
+      type: object
+      properties:
+        address:
+          type: string
+          nullable: true
+        ipEndPoint:
+          $ref: '#/components/schemas/IPEndPoint'
+        state:
+          $ref: '#/components/schemas/SoulseekClientStates'
+        username:
+          type: string
+          nullable: true
+        isConnected:
+          type: boolean
+          readOnly: true
+        isLoggedIn:
+          type: boolean
+          readOnly: true
+        isTransitioning:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Share:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        alias:
+          type: string
+          nullable: true
+        isExcluded:
+          type: boolean
+        localPath:
+          type: string
+          nullable: true
+        raw:
+          type: string
+          nullable: true
+        remotePath:
+          type: string
+          nullable: true
+        directories:
+          type: integer
+          format: int32
+          nullable: true
+        files:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: A file share.
+    ShareCacheOptions:
+      type: object
+      properties:
+        storageMode:
+          type: string
+          description: Gets the type of storage to use for the share cache.
+          nullable: true
+        workers:
+          maximum: 128
+          minimum: 1
+          type: integer
+          description: Gets the number of workers to use while scanning shares.
+          format: int32
+      additionalProperties: false
+      description: Share caching options.
+    SharesOptions:
+      type: object
+      properties:
+        directories:
+          type: array
+          items:
+            type: string
+          description: Gets the list of paths to shared files.
+          nullable: true
+        filters:
+          type: array
+          items:
+            type: string
+          description: Gets the list of shared file filters.
+          nullable: true
+        cache:
+          $ref: '#/components/schemas/ShareCacheOptions'
+      additionalProperties: false
+      description: Share options.
+    SoulseekClientStates:
+      enum:
+        - None
+        - Disconnected
+        - Connected
+        - LoggedIn
+        - Connecting
+        - LoggingIn
+        - Disconnecting
+      type: string
+    SoulseekOptions:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Gets the username for the Soulseek network.
+          nullable: true
+        password:
+          type: string
+          description: Gets the password for the Soulseek network.
+          nullable: true
+        description:
+          type: string
+          description: Gets the description of the Soulseek user.
+          nullable: true
+        listenPort:
+          maximum: 65535
+          minimum: 1024
+          type: integer
+          description: Gets the port on which to listen for incoming connections.
+          format: int32
+        diagnosticLevel:
+          $ref: '#/components/schemas/DiagnosticLevel'
+        distributedNetwork:
+          $ref: '#/components/schemas/DistributedNetworkOptions'
+        connection:
+          $ref: '#/components/schemas/ConnectionOptions'
+      additionalProperties: false
+      description: Soulseek client options.
+    Status:
+      type: object
+      properties:
+        isPrivileged:
+          type: boolean
+          description: Gets a value indicating whether the user is privileged.
+        presence:
+          $ref: '#/components/schemas/UserPresence'
+      additionalProperties: false
+      description: User status.
+    ThresholdOptions:
+      type: object
+      properties:
+        files:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: >-
+            Gets the minimum number of shared files required to avoid being
+            classified as a leecher.
+          format: int32
+        directories:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: >-
+            Gets the minimum number of shared directories required to avoid
+            being classified as a leecher.
+          format: int32
+      additionalProperties: false
+      description: Leecher threshold options.
+    TimeoutOptions:
+      type: object
+      properties:
+        connect:
+          maximum: 2147483647
+          minimum: 1000
+          type: integer
+          description: Gets the connection timeout value, in milliseconds.
+          format: int32
+        inactivity:
+          maximum: 2147483647
+          minimum: 1000
+          type: integer
+          description: Gets the connection inactivity timeout, in milliseconds.
+          format: int32
+      additionalProperties: false
+      description: Connection timeout options.
+    TokenResponse:
+      type: object
+      properties:
+        expires:
+          type: integer
+          description: Gets the time at which the Access Token expires.
+          format: int64
+          readOnly: true
+        issued:
+          type: integer
+          description: Gets the time at which the Access Token was issued.
+          format: int64
+          readOnly: true
+        name:
+          type: string
+          description: Gets the value of the Name claim from the Access Token.
+          nullable: true
+          readOnly: true
+        notBefore:
+          type: integer
+          description: Gets the value of the Not Before claim from the Access Token.
+          format: int64
+          readOnly: true
+        token:
+          type: string
+          description: Gets the Access Token string.
+          nullable: true
+          readOnly: true
+        tokenType:
+          type: string
+          description: Gets the Token type.
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    Transfer:
+      type: object
+      properties:
+        averageSpeed:
+          type: number
+          description: Gets the current average transfer speed.
+          format: double
+        bytesRemaining:
+          type: integer
+          description: Gets the number of remaining bytes to be transferred.
+          format: int64
+        bytesTransferred:
+          type: integer
+          description: Gets the total number of bytes transferred.
+          format: int64
+        direction:
+          $ref: '#/components/schemas/TransferDirection'
+        elapsedTime:
+          type: number
+          description: Gets the current duration of the transfer, if it has been started.
+          format: double
+          nullable: true
+        endTime:
+          type: string
+          description: >-
+            Gets the UTC time at which the transfer transitioned into the
+            Soulseek.TransferStates.Completed state.
+          format: date-time
+          nullable: true
+        filename:
+          type: string
+          description: Gets the filename of the file to be transferred.
+          nullable: true
+        id:
+          type: string
+          description: Gets the transfer id.
+          nullable: true
+          readOnly: true
+        ipEndPoint:
+          $ref: '#/components/schemas/IPEndPoint'
+        percentComplete:
+          type: number
+          description: Gets the current progress in percent.
+          format: double
+        placeInQueue:
+          type: integer
+          description: Gets the current place in queue, if it has been fetched.
+          format: int32
+          nullable: true
+        remainingTime:
+          type: number
+          description: Gets the projected remaining duration of the transfer.
+          format: double
+          nullable: true
+        remoteToken:
+          type: integer
+          description: Gets the remote unique token for the transfer.
+          format: int32
+          nullable: true
+        size:
+          type: integer
+          description: Gets the size of the file to be transferred, in bytes.
+          format: int64
+        startOffset:
+          type: integer
+          description: Gets the starting offset of the transfer, in bytes.
+          format: int64
+        startTime:
+          type: string
+          description: >-
+            Gets the UTC time at which the transfer transitioned into the
+            Soulseek.TransferStates.InProgress state.
+          format: date-time
+          nullable: true
+        state:
+          $ref: '#/components/schemas/TransferStates'
+        token:
+          type: integer
+          description: Gets the unique token for the transfer.
+          format: int32
+        username:
+          type: string
+          description: >-
+            Gets the username of the peer to or from which the file is to be
+            transferred.
+          nullable: true
+        exception:
+          type: string
+          description: >-
+            Gets the Exception that caused the failure of the transfer, if
+            applicable.
+          nullable: true
+      additionalProperties: false
+      description: A single file transfer.
+    TransferDirection:
+      enum:
+        - Download
+        - Upload
+      type: string
+    TransferStates:
+      enum:
+        - None
+        - Requested
+        - Queued
+        - Initializing
+        - InProgress
+        - Completed
+        - Succeeded
+        - Cancelled
+        - TimedOut
+        - Errored
+        - Rejected
+        - Aborted
+        - Locally
+        - Remotely
+      type: string
+    UploadOptions:
+      type: object
+      properties:
+        priority:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Gets the priority of the group.
+          format: int32
+        strategy:
+          type: string
+          description: Gets the queue strategy for the group.
+          nullable: true
+        slots:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Gets the limit for the total number of upload slots for the group.
+          format: int32
+        speedLimit:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Gets the total upload speed limit for the group.
+          format: int32
+      additionalProperties: false
+      description: User group upload options.
+    UserData:
+      type: object
+      properties:
+        averageSpeed:
+          type: integer
+          format: int32
+        countryCode:
+          type: string
+          nullable: true
+        directoryCount:
+          type: integer
+          format: int32
+        fileCount:
+          type: integer
+          format: int32
+        slotsFree:
+          type: integer
+          format: int32
+          nullable: true
+        status:
+          $ref: '#/components/schemas/UserPresence'
+        uploadCount:
+          type: integer
+          format: int64
+        username:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UserDefinedOptions:
+      type: object
+      properties:
+        upload:
+          $ref: '#/components/schemas/UploadOptions'
+        members:
+          type: array
+          items:
+            type: string
+          description: Gets the list of group member usernames.
+          nullable: true
+      additionalProperties: false
+      description: User defined user group options.
+    UserPresence:
+      enum:
+        - Offline
+        - Away
+        - Online
+      type: string
+    WebAuthenticationOptions:
+      type: object
+      properties:
+        disabled:
+          type: boolean
+          description: Gets a value indicating whether authentication should be disabled.
+        username:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the username for the web UI.
+          nullable: true
+        password:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the password for the web UI.
+          nullable: true
+        jwt:
+          $ref: '#/components/schemas/JwtOptions'
+        apiKeys:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ApiKeyOptions'
+          description: Gets API keys.
+          nullable: true
+      additionalProperties: false
+      description: Authentication options.
+    WebOptions:
+      type: object
+      properties:
+        port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          description: Gets the HTTP listen port.
+          format: int32
+        https:
+          $ref: '#/components/schemas/HttpsOptions'
+        urlBase:
+          type: string
+          description: Gets the base url for web requests.
+          nullable: true
+        contentPath:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Gets the path to static web content.
+          nullable: true
+        logging:
+          type: boolean
+          description: >-
+            Gets a value indicating whether HTTP request logging should be
+            enabled.
+        authentication:
+          $ref: '#/components/schemas/WebAuthenticationOptions'
+      additionalProperties: false
+      description: Web server options.
+servers:
+  - url: https://localhost:5031/api/v0
+    variables: {}
+    description: Default Server
