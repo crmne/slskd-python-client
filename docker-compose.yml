@@ -11,4 +11,5 @@ services:
       - "50300:50300"
     volumes:
       - "$HOME/slskd:/app"
+      - "$HOME/Music/Music/Music:/music"
     restart: always
